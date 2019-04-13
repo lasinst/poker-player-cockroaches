@@ -25,7 +25,8 @@ public class GameState {
     }
 
     public boolean anyAllIn() {
-        List<GamePlayer> otherPlayers = new ArrayList<GamePlayer>.addAll(players);
+        List<GamePlayer> otherPlayers = new ArrayList<GamePlayer>();
+        otherPlayers.addAll(players);
         otherPlayers.remove(in_action);
 
         for (GamePlayer p : otherPlayers) {

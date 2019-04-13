@@ -23,15 +23,19 @@ public class Player {
         GameState gameState = parser.fromJson(request, GameState.class);
         GamePlayer player = gameState.getCurrentPlayer();
 
-        int min = gameState.current_buy_in;
+        int min = gameState.current_buy_in - player.bet;
         int stack = player.stack;
 
         if (fallIfBadCards(player)) {
             return 0;
         }
+
+        if (gameState.anyAllIn()) {
+            return 0;
+        }
         
         ourBet = min;
-        
+
         log.info("stack: " + stack);
         log.info("ourBet: " + ourBet);
 
