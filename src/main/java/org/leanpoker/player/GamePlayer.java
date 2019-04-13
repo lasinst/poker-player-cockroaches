@@ -1,6 +1,7 @@
 package org.leanpoker.player;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class GamePlayer {
     public int id;
@@ -9,5 +10,5 @@ public class GamePlayer {
     public String version;
     public int stack;
     public int bet;
-    public ArrayList<Card> hole_cards;
+    public List<Card> hole_cards;
 }
