@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class Player {
 
-    static final String VERSION = "Default Java folding player";
+    static final String VERSION = "All-in Java Player";
 
     public static int betRequest(JsonElement request) {
         JsonObject realRequest = request.getAsJsonObject();
