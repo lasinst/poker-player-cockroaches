@@ -5,6 +5,8 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class Player {
@@ -36,6 +38,12 @@ public class Player {
         
         ourBet = min;
 
+        List<Card> allCards = allCards(gameState.community_cards, player.hole_cards);
+
+        if (Rule.getHands(allCards).getRank() >= Hands.DRILL.getRank()) {
+            ourBet = player.stack;
+        }
+
         log.info("stack: " + stack);
         log.info("ourBet: " + ourBet);
 
@@ -61,7 +69,13 @@ public class Player {
     }
 
     private static boolean smallCards(GamePlayer player) {
-        return player.hole_cards.get(0).rank.getValue() < 6 && player.hole_cards.get(1).rank.getValue() < 6;
+        return player.hole_cards.get(0).rank.getValue() < 10 && player.hole_cards.get(1).rank.getValue() < 10;
+    }
+
+    private static List<Card> allCards (List<Card> communityCards, List<Card> holeCards) {
+        List<Card> cards = new ArrayList<Card>(communityCards);
+        cards.addAll(holeCards);
+        return cards;
     }
 
     private static void prettyPrint(JsonObject realRequest) {
