@@ -41,6 +41,10 @@ public class Player {
         
         ourBet = min;
 
+        if (hand.getRank() > Hands.NOTHING && hand.getRank() < Hands.DRILL ) {
+            ourBet = min + gameState.minimum_raise;
+        }
+
         if (hand.getRank() >= Hands.DRILL.getRank()) {
             ourBet = player.stack;
         }
