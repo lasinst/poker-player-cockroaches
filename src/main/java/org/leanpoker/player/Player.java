@@ -31,10 +31,6 @@ public class Player {
         if (fallIfBadCards(player)) {
             return 0;
         }
-
-        if (gameState.anyAllIn()) {
-            return 0;
-        }
         
         ourBet = min;
 
