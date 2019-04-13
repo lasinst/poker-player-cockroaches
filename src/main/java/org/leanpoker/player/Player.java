@@ -28,19 +28,20 @@ public class Player {
         int min = gameState.current_buy_in - player.bet;
         int stack = player.stack;
 
+        List<Card> allCards = allCards(gameState.community_cards, player.hole_cards);
+        Hands hand = Rule.getHands(allCards);
+
         if (fallIfBadCards(player)) {
             return 0;
         }
 
-        if (gameState.anyAllIn()) {
+        if (gameState.anyAllIn() && hand.getRank() < Hands.DRILL.getRank()) {
             return 0;
         }
         
         ourBet = min;
 
-        List<Card> allCards = allCards(gameState.community_cards, player.hole_cards);
-
-        if (Rule.getHands(allCards).getRank() >= Hands.DRILL.getRank()) {
+        if (hand.getRank() >= Hands.DRILL.getRank()) {
             ourBet = player.stack;
         }
 
