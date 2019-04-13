@@ -42,7 +42,11 @@ public class Player {
     }
 
     private static boolean fallIfBadCards(GamePlayer player) {
-        return smallCards(player) || !sameSuits(player);
+        return smallCards(player) && !sameSuits(player) && !pairs(player);
+    }
+
+    private static boolean pairs(GamePlayer player) {
+        return player.hole_cards.get(0).rank == player.hole_cards.get(1).rank;
     }
 
     private static boolean sameSuits(GamePlayer player) {
