@@ -7,8 +7,9 @@ public enum Hands {
     DRILL(3),
     STRAIGHT(4),
     FLUSH(5),
-    POKER(6),
-    STRAIGHT_FLUSH(7);
+    FULL_HOUSE(6),
+    POKER(7),
+    STRAIGHT_FLUSH(8);
 
     private int rank;
 

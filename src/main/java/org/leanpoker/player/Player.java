@@ -29,16 +29,9 @@ public class Player {
         if (fallIfBadCards(player)) {
             return 0;
         }
-
-        if (gameState.anyAllIn()) {
-            return 0;
-        }
-
-        if (gameState.minimum_raise == player.bet) {
-            ourBet = 0;
-        } else {
-            ourBet = min;
-        }
+        
+        ourBet = min;
+        
         log.info("stack: " + stack);
         log.info("ourBet: " + ourBet);
 
