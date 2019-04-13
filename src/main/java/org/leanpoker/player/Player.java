@@ -44,6 +44,10 @@ public class Player {
     }
 
     public static void showdown(JsonElement game) {
+        System.out.println("---------GAME END-----------------");
+        JsonObject realRequest = game.getAsJsonObject();
+        prettyPrint(realRequest);
+
     }
 
 
