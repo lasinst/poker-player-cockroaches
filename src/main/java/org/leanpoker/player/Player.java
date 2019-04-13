@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 public class Player {
 
-    static final String VERSION = "All-in Java Player";
+    static final String VERSION = "All-in Folder Java Player";
     static Logger log = Logger.getLogger(PlayerServlet.class.getName());
 
     public static int betRequest(JsonElement request) {
