@@ -30,7 +30,7 @@ public class GameState {
         otherPlayers.remove(in_action);
 
         for (GamePlayer p : otherPlayers) {
-            if (p.stack == p.bet) {
+            if (p.status == "active" && p.stack == 0) {
                 return true;
             }
         }
