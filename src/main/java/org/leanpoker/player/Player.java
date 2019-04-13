@@ -44,6 +44,10 @@ public class Player {
             ourBet = player.stack;
         }
 
+        if (gameState.community_cards.size() == 5 && Rule.getHands(allCards) == Hands.NOTHING) {
+            return 0;
+        }
+
         log.info("stack: " + stack);
         log.info("ourBet: " + ourBet);
 
