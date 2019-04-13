@@ -1,8 +1,10 @@
 package org.leanpoker.player;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import org.apache.log4j.Logger;
+import java.util.logging.Logger;
 
 import java.util.Map;
 import java.util.Random;
@@ -14,6 +16,7 @@ public class Player {
 
     public static int betRequest(JsonElement request) {
         JsonObject realRequest = request.getAsJsonObject();
+        prettyPrint(realRequest);
         int activePlayer = realRequest.get("in_action").getAsInt();
         JsonObject player = realRequest.get("players").getAsJsonArray().get(activePlayer).getAsJsonObject();
 
@@ -39,5 +42,11 @@ public class Player {
 
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
+    }
+
+    private static void prettyPrint(JsonObject realRequest){
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        String json = gson.toJson(realRequest);
+        System.out.println(json);
     }
 }
