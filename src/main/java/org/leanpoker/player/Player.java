@@ -17,11 +17,13 @@ public class Player {
     public static int betRequest(JsonElement request) {
         JsonObject realRequest = request.getAsJsonObject();
         prettyPrint(realRequest);
-        int activePlayer = realRequest.get("in_action").getAsInt();
-        JsonObject player = realRequest.get("players").getAsJsonArray().get(activePlayer).getAsJsonObject();
 
-        int min = realRequest.get("current_buy_in").getAsInt() - player.get("bet").getAsInt();
-        int stack = player.get("stack").getAsInt();
+        Gson parser = new Gson();
+        GameState gameState = parser.fromJson(request, GameState.class);
+        GamePlayer player = gameState.getCurrentPlayer();
+
+        int min = gameState.current_buy_in;
+        int stack = player.stack;
 
         int ourBet = getRandomNumberInRange(min, stack);
         log.info("stack: " + stack);
