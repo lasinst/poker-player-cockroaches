@@ -13,7 +13,7 @@ public class Player {
     static Logger log = Logger.getLogger(PlayerServlet.class.getName());
 
     public static int betRequest(JsonElement request) {
-
+        System.out.println("---------BET ----------------");
         int ourBet;
 
         JsonObject realRequest = request.getAsJsonObject();
@@ -42,7 +42,7 @@ public class Player {
     }
 
     public static void showdown(JsonElement game) {
-        System.out.println("---------GAME END-----------------");
+        System.out.println("---------GAME END - SHOWDOWN ----------------");
         JsonObject realRequest = game.getAsJsonObject();
         prettyPrint(realRequest);
     }
