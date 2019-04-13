@@ -1,6 +1,7 @@
 package org.leanpoker.player;
 
 import java.util.List;
+import java.util.ArrayList;
 
 
 public class GameState {
@@ -21,5 +22,17 @@ public class GameState {
 
     public GamePlayer getCurrentPlayer() {
         return players.get(in_action);
+    }
+
+    public boolean anyAllIn() {
+        List<GamePlayer> otherPlayers = new ArrayList<GamePlayer>.addAll(players);
+        otherPlayers.remove(in_action);
+
+        for (GamePlayer p : otherPlayers) {
+            if (p.stack == p.bet) {
+                return true;
+            }
+        }
+        return false;
     }
 }
