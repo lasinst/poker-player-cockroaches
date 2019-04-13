@@ -1,6 +1,6 @@
 package org.leanpoker.player;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public class GameState {
@@ -16,8 +16,8 @@ public class GameState {
     public int dealer;
     public int orbits;
     public int in_action;
-    public ArrayList<GamePlayer> players;
-    public ArrayList<Card> community_cards;
+    public List<GamePlayer> players;
+    public List<Card> community_cards;
 
     public GamePlayer getCurrentPlayer() {
         return players.get(in_action);
