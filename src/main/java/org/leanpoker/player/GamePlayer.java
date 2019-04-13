@@ -9,5 +9,5 @@ public class GamePlayer {
     public String version;
     public int stack;
     public int bet;
-    public ArrayList<Card> holeCards;
+    public ArrayList<Card> hole_cards;
 }
