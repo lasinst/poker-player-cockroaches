@@ -4,10 +4,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import java.util.logging.Logger;
 
-import java.util.Map;
-import java.util.Random;
+import java.util.logging.Logger;
 
 public class Player {
 
@@ -28,36 +26,37 @@ public class Player {
         int min = gameState.current_buy_in;
         int stack = player.stack;
 
-        if(gameState.minimum_raise == player.bet)
-        {
-            ourBet = 0;
-        }
-        else
-        {
-            ourBet = min;
+        if (fallIfBadCards(player)) {
+            return 0;
         }
 
+        if (gameState.minimum_raise == player.bet) {
+            ourBet = 0;
+        } else {
+            ourBet = min;
+        }
         log.info("stack: " + stack);
         log.info("ourBet: " + ourBet);
 
         return ourBet;
     }
 
+    private static boolean fallIfBadCards(GamePlayer player) {
+        return smallCards(player) || !sameSuits(player);
+    }
+
+    private static boolean sameSuits(GamePlayer player) {
+        return player.hole_cards.get(0).suit == player.hole_cards.get(1).suit;
+    }
+
+    private static boolean smallCards(GamePlayer player) {
+        return player.hole_cards.get(0).rank.getValue() < 6 && player.hole_cards.get(1).rank.getValue() < 6;
+    }
+
     public static void showdown(JsonElement game) {
     }
 
-
-    private static int getRandomNumberInRange(int min, int max) {
-
-        if (min >= max) {
-            return max;
-        }
-
-        Random r = new Random();
-        return r.nextInt((max - min) + 1) + min;
-    }
-
-    private static void prettyPrint(JsonObject realRequest){
+    private static void prettyPrint(JsonObject realRequest) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
         String json = gson.toJson(realRequest);
         System.out.println(json);
