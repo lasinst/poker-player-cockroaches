@@ -41,7 +41,7 @@ public class Player {
         
         ourBet = min;
 
-        if (hand.getRank() > Hands.NOTHING && hand.getRank() < Hands.DRILL ) {
+        if (hand.getRank() > Hands.NOTHING && hand.getRank() < Hands.DRILL.getRank() ) {
             ourBet = min + gameState.minimum_raise;
         }
 
