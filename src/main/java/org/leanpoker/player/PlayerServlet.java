@@ -1,6 +1,7 @@
 package org.leanpoker.player;
 
 import com.google.gson.JsonParser;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,8 @@ import java.io.IOException;
 
 @WebServlet("/")
 public class PlayerServlet extends HttpServlet {
+
+    static Logger log = Logger.getLogger(PlayerServlet.class.getName());
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
