@@ -15,6 +15,9 @@ public class Player {
     static Logger log = Logger.getLogger(PlayerServlet.class.getName());
 
     public static int betRequest(JsonElement request) {
+
+        int ourBet;
+
         JsonObject realRequest = request.getAsJsonObject();
         prettyPrint(realRequest);
 
@@ -25,7 +28,15 @@ public class Player {
         int min = gameState.current_buy_in;
         int stack = player.stack;
 
-        int ourBet = getRandomNumberInRange(min, stack);
+        if(gameState.minimum_raise == player.bet)
+        {
+            ourBet = 0;
+        }
+        else
+        {
+            ourBet = min;
+        }
+
         log.info("stack: " + stack);
         log.info("ourBet: " + ourBet);
 
