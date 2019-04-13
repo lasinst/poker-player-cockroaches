@@ -2,6 +2,7 @@ package org.leanpoker.player;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import org.apache.log4j.Logger;
 
 import java.util.Map;
 import java.util.Random;
@@ -9,6 +10,7 @@ import java.util.Random;
 public class Player {
 
     static final String VERSION = "All-in Java Player";
+    static Logger log = Logger.getLogger(PlayerServlet.class.getName());
 
     public static int betRequest(JsonElement request) {
         JsonObject realRequest = request.getAsJsonObject();
@@ -18,7 +20,11 @@ public class Player {
         int min = realRequest.get("current_buy_in").getAsInt() - player.get("bet").getAsInt();
         int stack = player.get("stack").getAsInt();
 
-        return getRandomNumberInRange(min, stack);
+        int ourBet = getRandomNumberInRange(min, stack);
+        log.info("stack: " + stack);
+        log.info("ourBet: " + ourBet);
+
+        return ourBet;
     }
 
     public static void showdown(JsonElement game) {
