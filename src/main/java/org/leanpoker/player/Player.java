@@ -15,7 +15,7 @@ public class Player {
         int activePlayer = realRequest.get("in_action").getAsInt();
         JsonObject player = realRequest.get("players").getAsJsonArray().get(activePlayer).getAsJsonObject();
 
-        int min = realRequest.get("current_buy_in").getAsInt() + realRequest.get("minimum_raise").getAsInt();
+        int min = realRequest.get("current_buy_in").getAsInt() - player.get("bet").getAsInt();
         int stack = player.get("stack").getAsInt();
 
         return getRandomNumberInRange(min, stack);
